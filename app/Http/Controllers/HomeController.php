@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -24,5 +27,12 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function login()
+    {
+        if (!Auth::user()){
+            return view('admin.pages.login.index');
+        }
     }
 }
