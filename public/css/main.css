@@ -1,0 +1,14 @@
+.alert-border-gray {
+	border-color: #23222252;
+}
+.navbar .navbar-toggler {
+    top: 0.25rem;
+    right: 1rem;
+}
+.required {
+    color: red;
+}
+.table .thead-yellow th {
+    background-color: #fdf001;
+    color: #333333;
+}

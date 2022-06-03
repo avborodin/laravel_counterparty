@@ -13,33 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('login');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//Route::get('/logout', 'Auth\LoginController@logout');
-
-Route::get('/backend/counterparty', [App\Http\Controllers\СounterpartyController::class, 'index'])->name('index');
-
-
-/*Route::group(['middleware' => ['auth']], function() {
-    Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
-});*/
-
-Route::get('/backend/counterparty/form', [App\Http\Controllers\СounterpartyController::class, 'form']);
 
 Route::group(['middleware' => 'role:web-developer'], function() {
 
-   Route::get('/admin', function() {
-      return 'Добро пожаловать, веб-разработчик';
-   });
-   Route::get('/backend/counterparty/form', [App\Http\Controllers\СounterpartyController::class, 'form']);
+    Route::get('/admin', function() {
+         return 'Добро пожаловать, веб-разработчик';
+    });
+    Route::get('/backend/counterparty/form', [App\Http\Controllers\СounterpartyController::class, 'form'])->name('counterparty.form');
+    Route::post('/backend/counterparty', [App\Http\Controllers\СounterpartyController::class, 'store'])->name('counterparty.store');
+    Route::get('/backend/counterparty', [App\Http\Controllers\СounterpartyController::class, 'index'])->name('index');
+    Route::get('/backend/counterparty', [App\Http\Controllers\СounterpartyController::class, 'index'])->name('counterparty.index');
+    Route::post('/backend/counterparty/delete', [App\Http\Controllers\СounterpartyController::class, 'destroy'])->name('counterparty.delete');
+
 
 });
 Route::group(['middleware' => 'role:project-manager'], function() {
